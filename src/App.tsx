@@ -103,7 +103,9 @@ const router = createBrowserRouter([
 			},
 		],
 	},
-],   basename: "/content-guide");
+],{
+  basename: "/app",
+});
 
 export default function App() {
 	return <RouterProvider router={router} />;
