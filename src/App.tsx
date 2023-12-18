@@ -19,7 +19,7 @@ import BeClear from "./pages/writing-for-translation/be-clear.mdx";
 import UseActiveVoice from "./pages/writing-for-translation/use-active-voice.mdx";
 import UsePositiveVoice from "./pages/writing-for-translation/use-positive-voice.mdx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
 	{
 		path: "/",
 		element: <Layout />,
