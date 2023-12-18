@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Index from "./pages/index.mdx";
 import VoiceAndTone from "./pages/voice-and-tone/overview.mdx";
