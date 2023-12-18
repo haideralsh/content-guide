@@ -104,7 +104,7 @@ const router = createBrowserRouter([
 		],
 	},
 ],{
-  basename: "/app",
+  basename: "/content-guide",
 });
 
 export default function App() {
