@@ -21,7 +21,7 @@ import UsePositiveVoice from "./pages/writing-for-translation/use-positive-voice
 
 const router = createBrowserRouter([
 	{
-		path: "/",
+		path: "/content-guide/",
 		element: <Layout />,
 		errorElement: <div>Page not found</div>,
 		children: [
