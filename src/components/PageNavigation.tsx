@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Box, Link, Text } from "@nulogy/components";
 import routes from "../routes";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import useTitleUpdate from "../hooks/useTitle";
 
 const allPaths = routes.flatMap((menuItem) =>
 	menuItem.links.map((menuLink) => {
@@ -17,20 +18,12 @@ const allPageTitles = routes.flatMap((menuItem) =>
 
 const PageNavigation = () => {
 	const location = useLocation();
+
 	const currentPath = location.pathname;
 	const currentIndex = allPaths.indexOf(currentPath);
-
 	const currentTitle = allPageTitles[currentIndex];
 
-	useEffect(() => {
-		document.title = currentTitle
-			? `Nulogy Content Guide ${currentTitle}`
-			: "Nulogy Content Guide";
-
-		return () => {
-			document.title = "Nulogy Content Guide";
-		};
-	});
+	useTitleUpdate(currentTitle);
 
 	const previousPage = {
 		path: allPaths[currentIndex - 1],
