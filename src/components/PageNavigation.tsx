@@ -1,23 +1,19 @@
 import { useEffect } from "react";
 import { Box, Link, Text } from "@nulogy/components";
-import { routes } from "./routes";
+import routes from "../routes";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
-const allPaths = routes
-	.map((menuItem) =>
-		menuItem.links.map((menuLink) => {
-			return menuLink.href;
-		}),
-	)
-	.flat();
+const allPaths = routes.flatMap((menuItem) =>
+	menuItem.links.map((menuLink) => {
+		return menuLink.path;
+	}),
+);
 
-const allPageTitles = routes
-	.map((menuItem) =>
-		menuItem.links.map((menuLink) => {
-			return menuLink.title ? menuLink.title : menuLink.name;
-		}),
-	)
-	.flat();
+const allPageTitles = routes.flatMap((menuItem) =>
+	menuItem.links.map((menuLink) => {
+		return menuLink.title ? menuLink.title : menuLink.name;
+	}),
+);
 
 const PageNavigation = () => {
 	const location = useLocation();
@@ -27,7 +23,9 @@ const PageNavigation = () => {
 	const currentTitle = allPageTitles[currentIndex];
 
 	useEffect(() => {
-		document.title = currentTitle ?? "Nulogy Content Guide";
+		document.title = currentTitle
+			? `Nulogy Content Guide ${currentTitle}`
+			: "Nulogy Content Guide";
 
 		return () => {
 			document.title = "Nulogy Content Guide";

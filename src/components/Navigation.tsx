@@ -9,7 +9,7 @@ import {
 } from "@nulogy/components";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { routes } from "./routes";
+import routes from "../routes";
 
 const NavigationLink = styled("a")<{ selected?: boolean }>(({ selected }) => ({
 	fontSize: "20px",
@@ -21,16 +21,6 @@ const NavigationLink = styled("a")<{ selected?: boolean }>(({ selected }) => ({
 	position: "relative",
 	left: 0,
 }));
-
-const sortedRoutes = routes.map((navGroup) => {
-	if (navGroup.name === "Components") {
-		return {
-			...navGroup,
-			links: navGroup.links.sort((a, b) => a.name.localeCompare(b.name)),
-		};
-	}
-	return navGroup;
-});
 
 const NavigationHeading = ({ children }: { children: React.ReactNode }) => (
 	<Text
@@ -75,21 +65,21 @@ const Navigation = () => {
 					</Box>
 				</NDSLink>
 			</Box>
-			{sortedRoutes.map((menuItem) => (
-				<Box mb="x6" key={menuItem.name}>
-					<NavigationHeading>{menuItem.name}</NavigationHeading>
+			{routes.map((route) => (
+				<Box mb="x6" key={route.name}>
+					<NavigationHeading>{route.name}</NavigationHeading>
 					<List pl="0">
 						<>
-							{menuItem.links.map((menuLink) => {
-								const selected = menuLink.href === location.pathname;
+							{route.links.map((menuLink) => {
+								const selected = menuLink.path === location.pathname;
 
 								return (
-									<Text key={menuLink.href}>
+									<Text key={menuLink.path}>
 										<NavigationLink
 											as={Link}
 											selected={selected}
 											ref={selected ? selectedRef : null}
-											to={menuLink.href}
+											to={menuLink.path}
 										>
 											{menuLink.name}
 										</NavigationLink>
